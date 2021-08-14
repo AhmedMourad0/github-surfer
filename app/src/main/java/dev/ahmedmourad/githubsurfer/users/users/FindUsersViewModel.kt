@@ -150,6 +150,7 @@ class FindUsersViewModel(
         initialValue = State.Loading
     )
 
+    //This's me regretting not using Google's paging library
     val items = MutableStateFlow(emptyList<SimpleUser>())
 
     fun enforceUpToDate() {
