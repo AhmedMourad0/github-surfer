@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/findUsersFragment">
+	<fragment
+		android:id="@+id/findUsersFragment"
+		android:name="dev.ahmedmourad.githubsurfer.users.users.FindUsersFragment"
+		android:label="FindUsersFragment" >
+		<argument
+			android:name="query"
+			app:argType="string"
+			app:nullable="true"
+			android:defaultValue="null" />
+		<action
+			android:id="@+id/action_findUsersFragment_to_searchResultsFragment"
+			app:destination="@id/searchResultsFragment" />
+		<action
+			android:id="@+id/action_findUsersFragment_to_userProfileFragment"
+			app:destination="@id/userProfileFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/searchResultsFragment"
+		android:name="dev.ahmedmourad.githubsurfer.users.search.SearchResultsFragment"
+		android:label="SearchResultsFragment" >
+		<action
+			android:id="@+id/action_searchResultsFragment_to_userProfileFragment"
+			app:destination="@id/userProfileFragment" />
+		<argument
+			android:name="query"
+			app:argType="string" />
+	</fragment>
+	<fragment
+		android:id="@+id/userProfileFragment"
+		android:name="dev.ahmedmourad.githubsurfer.users.profile.UserProfileFragment"
+		android:label="fragment_user_profile"
+		tools:layout="@layout/fragment_user_profile" >
+		<argument
+			android:name="user"
+			app:argType="dev.ahmedmourad.githubsurfer.users.profile.ParcelableSimpleUser" />
+	</fragment>
+</navigation>

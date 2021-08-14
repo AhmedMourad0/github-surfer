@@ -1,0 +1,24 @@
+<resources>
+	<string name="app_name">GithubSurfer</string>
+	<string name="search">Search</string>
+	<string name="cd_error_image">An error has occurred</string>
+	<string name="newer_data_available">Newer Data Available</string>
+	<string name="something_went_wrong">Something went wrong :(</string>
+	<string name="no_internet_connection">No internet connection :(</string>
+	<string name="search_via_username_or_notes">Search via username or notes</string>
+	<string name="cd_user_avatar">User Avatar</string>
+	<string name="user_not_found">Could not find user profile :(</string>
+	<string name="followers">Followers</string>
+	<string name="following">Following</string>
+	<string name="repos">Repos</string>
+	<string name="gists">Gists</string>
+	<string name="bio">Bio</string>
+	<string name="email">Email</string>
+	<string name="location">Location</string>
+	<string name="company">Company</string>
+	<string name="blog">Blog</string>
+	<string name="full_name">Full Name</string>
+	<string name="notes">Notes</string>
+	<string name="save_notes">Save Notes</string>
+	<string name="notes_update_successful">Notes updated successfully!</string>
+</resources>
