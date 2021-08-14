@@ -29,6 +29,11 @@ data class PagingState(
     val refresh: String
 )
 
+//We start by looking for cached data, while simultaneously fetching
+// data from the backend, if there's data in cache it is displayed, then,
+// when the remote call finished, if it's successful and there's no cache
+// data displayed, the remote data is displayed, if there is already data being
+// displayed, we show the user a fab indicating that newer data is available
 @OptIn(ExperimentalCoroutinesApi::class)
 class FindUsersViewModel(
     findAllUsers: FindAllUsers
