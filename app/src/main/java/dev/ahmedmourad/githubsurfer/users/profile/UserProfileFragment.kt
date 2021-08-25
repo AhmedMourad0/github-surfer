@@ -26,6 +26,7 @@ import dev.ahmedmourad.githubsurfer.di.injector
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 import javax.inject.Provider
+import dev.ahmedmourad.githubsurfer.utils.bindToLifecycle
 
 class UserProfileFragment : Fragment(R.layout.fragment_user_profile) {
 
@@ -106,7 +107,7 @@ class UserProfileFragment : Fragment(R.layout.fragment_user_profile) {
     }
 
     private fun initializeStateObservers() {
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.state.collectLatest { state ->
                 when (state) {
                     is UserProfileViewModel.State.Data -> {
@@ -154,7 +155,7 @@ class UserProfileFragment : Fragment(R.layout.fragment_user_profile) {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.updateNotesState.collectLatest { state ->
                 when (state) {
                     is UserProfileViewModel.UpdateNotesState.Success -> {

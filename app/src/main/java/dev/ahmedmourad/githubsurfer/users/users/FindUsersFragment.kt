@@ -31,6 +31,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.drop
 import javax.inject.Inject
 import javax.inject.Provider
+import dev.ahmedmourad.githubsurfer.utils.bindToLifecycle
 
 class FindUsersFragment : Fragment(), SearchHandler {
 
@@ -140,7 +141,7 @@ class FindUsersFragment : Fragment(), SearchHandler {
             loadingMode()
             viewModel.enforceUpToDate()
         }
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.hasUpToDate.collectLatest { hasUpToDate ->
                 if (hasUpToDate) newDataFab!!.show() else newDataFab!!.hide()
             }
@@ -151,7 +152,7 @@ class FindUsersFragment : Fragment(), SearchHandler {
         swipeToRefresh!!.setOnRefreshListener {
             viewModel.onRefresh()
         }
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.endRefresh.collectLatest {
                 swipeToRefresh!!.isRefreshing = false
             }
@@ -165,7 +166,7 @@ class FindUsersFragment : Fragment(), SearchHandler {
             itemsMode()
         }
 
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.state
                 .drop(if (viewModel.items.value.isNotEmpty()) 1 else 0)
                 .collectLatest { state ->
@@ -219,7 +220,7 @@ class FindUsersFragment : Fragment(), SearchHandler {
                 }
         }
 
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.lastVisitedUser.collectLatest { user ->
                 user ?: return@collectLatest
                 layoutManager.scrollToPositionWithOffset(adapter.refreshItem(user), 0)

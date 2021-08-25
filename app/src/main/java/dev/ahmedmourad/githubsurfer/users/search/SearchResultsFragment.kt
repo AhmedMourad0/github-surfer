@@ -28,6 +28,7 @@ import dev.ahmedmourad.githubsurfer.utils.hideIme
 import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 import javax.inject.Provider
+import dev.ahmedmourad.githubsurfer.utils.bindToLifecycle
 
 class SearchResultsFragment : Fragment(), SearchHandler {
 
@@ -120,7 +121,7 @@ class SearchResultsFragment : Fragment(), SearchHandler {
 
     private fun initializeStateObservers() {
 
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.state.collectLatest { state ->
                 hideIme()
                 when (state) {
@@ -152,7 +153,7 @@ class SearchResultsFragment : Fragment(), SearchHandler {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        bindToLifecycle {
             viewModel.lastVisitedUser.collectLatest { user ->
                 user ?: return@collectLatest
                 layoutManager.scrollToPositionWithOffset(adapter.refreshItem(user), 0)
